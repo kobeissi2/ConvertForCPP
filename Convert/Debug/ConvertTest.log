@@ -1,0 +1,14 @@
+﻿  unittest1.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\auxiliary\vs\unittest\include\cppunittestassert.h(66): error C3690: expected a string literal, but found a user-defined string literal instead
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\auxiliary\vs\unittest\include\cppunittestassert.h(128): note: see reference to function template instantiation 'std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<T>(const Q &)' being compiled
+          with
+          [
+              T=uint16_t,
+              Q=uint16_t
+          ]
+  c:\users\kobei\documents\github\convertforcpp\convert\converttest\unittest1.cpp(506): note: see reference to function template instantiation 'void Microsoft::VisualStudio::CppUnitTestFramework::Assert::AreEqual<uint16_t>(const T &,const T &,const wchar_t *,const Microsoft::VisualStudio::CppUnitTestFramework::__LineInfo *)' being compiled
+          with
+          [
+              T=uint16_t
+          ]
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
