@@ -2,6 +2,9 @@ What is ConvertForCPP?
 
   -Convert is a class in C# that converts a data type to another. ConvertForCPP is my version of Convert ported over to C++.
 
+Where to download? 
+  -Right click here and press save as: https://github.com/kobeissi2/ConvertForCPP/raw/master/Convert/Convert/Convert.h
+
 
 Important notes:
 
