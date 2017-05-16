@@ -3,26 +3,12 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
 using namespace  std;
-
-string convertBase(int value, int base)
-{
-	string val;
-	while (value >= 1)
-	{
-		int remainder = value % base;
-		ostringstream tempString;
-		tempString << remainder;
-		val += tempString.str();
-		value /= base;
-	}
-	reverse(val.begin(), val.end());
-	return val;
-}
 
 class Convert
 {
+private:
+	static string convertBase(int, int);
 public:
 	static bool ToBoolean(bool);
 	static bool ToBoolean(uint8_t);
@@ -34,6 +20,7 @@ public:
 	static bool ToBoolean(int8_t);
 	static bool ToBoolean(float);
 	static bool ToBoolean(string);
+	static bool ToBoolean(char*);
 	static bool ToBoolean(uint16_t);
 	static bool ToBoolean(uint32_t);
 	static bool ToBoolean(uint64_t);
@@ -47,6 +34,7 @@ public:
 	static uint8_t ToByte(int8_t);
 	static uint8_t ToByte(float);
 	static uint8_t ToByte(string);
+	static uint8_t ToByte(char*);
 	static uint8_t ToByte(string, int32_t);
 	static uint8_t ToByte(uint16_t);
 	static uint8_t ToByte(uint32_t);
@@ -61,6 +49,7 @@ public:
 	static char ToChar(int8_t);
 	static char ToChar(float);
 	static char ToChar(string);
+	static char ToChar(char*);
 	static char ToChar(uint16_t);
 	static char ToChar(uint32_t);
 	static char ToChar(uint64_t);
@@ -74,6 +63,7 @@ public:
 	static double ToDouble(int8_t);
 	static double ToDouble(float);
 	static double ToDouble(string);
+	static double ToDouble(char*);
 	static double ToDouble(uint16_t);
 	static double ToDouble(uint32_t);
 	static double ToDouble(uint64_t);
@@ -87,6 +77,7 @@ public:
 	static int16_t ToInt16(int8_t);
 	static int16_t ToInt16(float);
 	static int16_t ToInt16(string);
+	static int16_t ToInt16(char*);
 	static int16_t ToInt16(string, int32_t);
 	static int16_t ToInt16(uint16_t);
 	static int16_t ToInt16(uint32_t);
@@ -101,6 +92,7 @@ public:
 	static int32_t ToInt32(int8_t);
 	static int32_t ToInt32(float);
 	static int32_t ToInt32(string);
+	static int32_t ToInt32(char*);
 	static int32_t ToInt32(string, int32_t);
 	static int32_t ToInt32(uint16_t);
 	static int32_t ToInt32(uint32_t);
@@ -115,6 +107,7 @@ public:
 	static int64_t ToInt64(int8_t);
 	static int64_t ToInt64(float);
 	static int64_t ToInt64(string);
+	static int64_t ToInt64(char*);
 	static int64_t ToInt64(string, int32_t);
 	static int64_t ToInt64(uint16_t);
 	static int64_t ToInt64(uint32_t);
@@ -129,6 +122,7 @@ public:
 	static int ToInt(int8_t);
 	static int ToInt(float);
 	static int ToInt(string);
+	static int ToInt(char*);
 	static int ToInt(string, int32_t);
 	static int ToInt(uint16_t);
 	static int ToInt(uint32_t);
@@ -143,6 +137,7 @@ public:
 	static int8_t ToSByte(uint8_t);
 	static int8_t ToSByte(float);
 	static int8_t ToSByte(string);
+	static int8_t ToSByte(char*);
 	static int8_t ToSByte(string, int32_t);
 	static int8_t ToSByte(uint16_t);
 	static int8_t ToSByte(uint32_t);
@@ -157,6 +152,7 @@ public:
 	static float ToSingle(int8_t);
 	static float ToSingle(float);
 	static float ToSingle(string);
+	static float ToSingle(char*);
 	static float ToSingle(uint16_t);
 	static float ToSingle(uint32_t);
 	static float ToSingle(uint64_t);
@@ -170,6 +166,7 @@ public:
 	static float ToFloat(int8_t);
 	static float ToFloat(float);
 	static float ToFloat(string);
+	static float ToFloat(char*);
 	static float ToFloat(uint16_t);
 	static float ToFloat(uint32_t);
 	static float ToFloat(uint64_t);
@@ -187,6 +184,7 @@ public:
 	static string ToString(int8_t);
 	static string ToString(float);
 	static string ToString(string);
+	static string ToString(char*);
 	static string ToString(uint16_t);
 	static string ToString(uint32_t);
 	static string ToString(uint64_t);
@@ -200,6 +198,7 @@ public:
 	static uint16_t ToUInt16(int8_t);
 	static uint16_t ToUInt16(float);
 	static uint16_t ToUInt16(string);
+	static uint16_t ToUInt16(char*);
 	static uint16_t ToUInt16(string, int32_t);
 	static uint16_t ToUInt16(uint16_t);
 	static uint16_t ToUInt16(uint32_t);
@@ -214,6 +213,7 @@ public:
 	static uint32_t ToUInt32(int8_t);
 	static uint32_t ToUInt32(float);
 	static uint32_t ToUInt32(string);
+	static uint32_t ToUInt32(char*);
 	static uint32_t ToUInt32(string, uint32_t);
 	static uint32_t ToUInt32(uint16_t);
 	static uint32_t ToUInt32(uint32_t);
@@ -228,11 +228,27 @@ public:
 	static uint64_t ToUInt64(int8_t);
 	static uint64_t ToUInt64(float);
 	static uint64_t ToUInt64(string);
+	static uint64_t ToUInt64(char*);
 	static uint64_t ToUInt64(string, int32_t);
 	static uint64_t ToUInt64(uint16_t);
 	static uint64_t ToUInt64(uint32_t);
 	static uint64_t ToUInt64(uint64_t);
 };
+
+inline string Convert::convertBase(int value, int base)
+{
+	string val;
+	while (value >= 1)
+	{
+		int remainder = value % base;
+		ostringstream tempString;
+		tempString << remainder;
+		val += tempString.str();
+		value /= base;
+	}
+	reverse(val.begin(), val.end());
+	return val;
+}
 
 inline bool Convert::ToBoolean(bool value)
 {
@@ -285,6 +301,12 @@ inline bool Convert::ToBoolean(string value)
 	return value == "TrueString" ? true : false;
 }
 
+inline bool Convert::ToBoolean(char *value)
+{
+	string finalValue = value;
+	return ToBoolean(finalValue);
+}
+
 inline bool Convert::ToBoolean(uint16_t value)
 {
 	return value != 0 ? true : false;
@@ -302,7 +324,7 @@ inline bool Convert::ToBoolean(uint64_t value)
 
 inline uint8_t Convert::ToByte(bool value)
 {
-	return value == true ? 1 : 0;
+	return (value == true) ? '1' : '0';
 }
 
 inline uint8_t Convert::ToByte(uint8_t value)
@@ -348,6 +370,12 @@ inline uint8_t Convert::ToByte(float value)
 inline uint8_t Convert::ToByte(string value)
 {
 	return (uint8_t)atoi(value.c_str());
+}
+
+inline uint8_t Convert::ToByte(char *value)
+{
+	string finalValue = value;
+	return ToByte(finalValue);
 }
 
 inline uint8_t Convert::ToByte(string value, int32_t base)
@@ -424,6 +452,12 @@ inline char Convert::ToChar(string value)
 	return value[0];
 }
 
+inline char Convert::ToChar(char *value)
+{
+	string finalValue = value;
+	return ToChar(finalValue);
+}
+
 inline char Convert::ToChar(uint16_t value)
 {
 	return (char)value;
@@ -490,6 +524,12 @@ inline double Convert::ToDouble(string value)
 	return stod(value);
 }
 
+inline double Convert::ToDouble(char *value)
+{
+	string finalValue = value;
+	return ToDouble(finalValue);
+}
+
 inline double Convert::ToDouble(uint16_t value)
 {
 	return (double)value;
@@ -553,6 +593,12 @@ inline int16_t Convert::ToInt16(float value)
 inline int16_t Convert::ToInt16(string value)
 {
 	return (int16_t)atoi(value.c_str());
+}
+
+inline int16_t Convert::ToInt16(char *value)
+{
+	string finalValue = value;
+	return ToInt16(finalValue);
 }
 
 inline int16_t Convert::ToInt16(string value, int32_t base)
@@ -626,6 +672,12 @@ inline int32_t Convert::ToInt32(string value)
 	return atoi(value.c_str());
 }
 
+inline int32_t Convert::ToInt32(char *value)
+{
+	string finalValue = value;
+	return ToInt32(finalValue);
+}
+
 inline int32_t Convert::ToInt32(string value, int32_t base)
 {
 	string answer = convertBase(Convert::ToInt32(value), base);
@@ -697,6 +749,12 @@ inline int64_t Convert::ToInt64(string value)
 	return (int64_t)atoi(value.c_str());
 }
 
+inline int64_t Convert::ToInt64(char *value)
+{
+	string finalValue = value;
+	return ToInt64(finalValue);
+}
+
 inline int64_t Convert::ToInt64(string value, int32_t base)
 {
 	string answer = convertBase(Convert::ToInt64(value), base);
@@ -761,6 +819,12 @@ inline int Convert::ToInt(float value)
 inline int Convert::ToInt(string value)
 {
 	return Convert::ToInt32(value);
+}
+
+inline int Convert::ToInt(char *value)
+{
+	string finalValue = value;
+	return ToInt(finalValue);
 }
 
 inline int Convert::ToInt(string value, int32_t base)
@@ -838,6 +902,12 @@ inline int8_t Convert::ToSByte(string value)
 	return (int8_t)atoi(value.c_str());
 }
 
+inline int8_t Convert::ToSByte(char *value)
+{
+	string finalValue = value;
+	return ToSByte(finalValue);
+}
+
 inline int8_t Convert::ToSByte(string value, int32_t base)
 {
 	string answer = convertBase(Convert::ToSByte(value), base);
@@ -910,6 +980,12 @@ inline float Convert::ToSingle(string value)
 	return stof(value.c_str());
 }
 
+inline float Convert::ToSingle(char *value)
+{
+	string finalValue = value;
+	return ToSingle(finalValue);
+}
+
 inline float Convert::ToSingle(uint16_t value)
 {
 	return (float)value;
@@ -973,6 +1049,12 @@ inline float Convert::ToFloat(float value)
 inline float Convert::ToFloat(string value)
 {
 	return ToSingle(value);
+}
+
+inline float Convert::ToFloat(char *value)
+{
+	string finalValue = value;
+	return ToFloat(finalValue);
 }
 
 inline float Convert::ToFloat(uint16_t value)
@@ -1096,6 +1178,12 @@ inline string Convert::ToString(string value)
 	return value;
 }
 
+inline string Convert::ToString(char *value)
+{
+	string finalValue = value;
+	return ToString(finalValue);
+}
+
 inline string Convert::ToString(uint16_t value)
 {
 	ostringstream tempString;
@@ -1165,6 +1253,12 @@ inline uint16_t Convert::ToUInt16(float value)
 inline uint16_t Convert::ToUInt16(string value)
 {
 	return (uint16_t)atoi(value.c_str());
+}
+
+inline uint16_t Convert::ToUInt16(char *value)
+{
+	string finalValue = value;
+	return ToUInt16(finalValue);
 }
 
 inline uint16_t Convert::ToUInt16(string value, int32_t base)
@@ -1238,6 +1332,12 @@ inline uint32_t Convert::ToUInt32(string value)
 	return (uint32_t)atoi(value.c_str());
 }
 
+inline uint32_t Convert::ToUInt32(char *value)
+{
+	string finalValue = value;
+	return ToUInt32(finalValue);
+}
+
 inline uint32_t Convert::ToUInt32(string value, uint32_t base)
 {
 	string answer = convertBase(Convert::ToUInt32(value), base);
@@ -1307,6 +1407,12 @@ inline uint64_t Convert::ToUInt64(float value)
 inline uint64_t Convert::ToUInt64(string value)
 {
 	return (uint64_t)atoi(value.c_str());
+}
+
+inline uint64_t Convert::ToUInt64(char *value)
+{
+	string finalValue = value;
+	return ToUInt64(finalValue);
 }
 
 inline uint64_t Convert::ToUInt64(string value, int32_t base)
