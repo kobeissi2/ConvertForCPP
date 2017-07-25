@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-using namespace  std;
+using namespace std;
 
 class Convert
 {
@@ -1099,7 +1099,6 @@ inline string Convert::ToString(uint32_t value, int32_t base)
 	{
 		throw exception("Invalid base!");
 	}
-
 	return convertBase(value, base);
 }
 
@@ -1129,7 +1128,6 @@ inline string Convert::ToString(int16_t value, int32_t base)
 	{
 		throw exception("Invalid base!");
 	}
-
 	return convertBase(value, base);
 }
 
@@ -1139,7 +1137,6 @@ inline string Convert::ToString(int32_t value, int32_t base)
 	{
 		throw exception("Invalid base!");
 	}
-
 	return convertBase(value, base);
 }
 
@@ -1156,7 +1153,6 @@ inline string Convert::ToString(int64_t value, int32_t base)
 	{
 		throw exception("Invalid base!");
 	}
-
 	return convertBase(value, base);
 }
 
